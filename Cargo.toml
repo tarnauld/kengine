@@ -1,0 +1,14 @@
+[package]
+name = "snake"
+version = "0.1.0"
+authors = ["timothee.arnauld1@gmail.com <timothee.arnauld1@gmail.com>"]
+
+[[bin]]
+name = "snake"
+path="src/main.rs"
+
+[dependencies]
+piston = "0.36.0"
+piston2d-graphics = "0.26.0"
+pistoncore-glutin_window = "0.45.0"
+piston2d-opengl_graphics = "0.52.0"
