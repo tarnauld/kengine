@@ -1,8 +1,4 @@
-#[derive(Clone)]
-pub struct Coord{
-    pub x: i64,
-    pub y: i64
-}
+use game::coord::Coord;
 
 pub struct Snake{
     pub body: Vec<Coord>,

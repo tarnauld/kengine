@@ -1,28 +1,25 @@
 use piston::window::WindowSettings;
 use glutin_window::GlutinWindow as Window;
-use opengl_graphics::{ GlGraphics, OpenGL };
+use opengl_graphics::OpenGL;
 use piston::event_loop::*;
 use piston::input::*;
 
 use game::game::Game;
-use game::snake::Snake;
 
 pub fn engine(){
     let opengl = OpenGL::V3_2;
 
-    let mut window : Window = WindowSettings::new("snake",[500, 500])
+    let s = 30;
+    let w = 25 * s;
+    let h = 25 * s;
+
+
+    let mut window : Window = WindowSettings::new("snake",[w, h])
                                                 .opengl(opengl)
                                                 .exit_on_esc(true)
                                                 .build()
                                                 .unwrap();
-    let mut app = Game{
-        gl: GlGraphics::new(opengl),
-        s: Snake::new(),
-        w_width: 500,
-        w_height: 500,
-        step: 10,
-        i: 0
-    };
+    let mut app = Game::new(opengl, w, h, s);
 
     let mut events = Events::new(EventSettings::new());
     events.set_ups(5);
