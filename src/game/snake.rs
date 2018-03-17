@@ -1,15 +1,11 @@
 use std::collections::LinkedList;
 
-pub struct Cord{
-    x: i32,
-    y: i32
-}
-
 pub struct Snake{
-    pub body: LinkedList<Cord>,
+    pub body: LinkedList<Snake>,
     pub direction: Direction
 }
 
+#[derive(Debug)]
 pub enum Direction {
     RIGHT,
     LEFT,

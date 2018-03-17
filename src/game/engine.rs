@@ -10,20 +10,21 @@ use game::snake::Snake;
 pub fn engine(){
     let opengl = OpenGL::V3_2;
 
-    let mut window : Window = WindowSettings::new(
-            "snake",
-            [500, 500]
-    ).opengl(opengl)
-    .exit_on_esc(true)
-    .build()
-    .unwrap();
+    let mut window : Window = WindowSettings::new("snake",[500, 500])
+                                                .opengl(opengl)
+                                                .exit_on_esc(true)
+                                                .build()
+                                                .unwrap();
 
     let mut app = Game{
         gl: GlGraphics::new(opengl),
-        s: Snake::new()
+        s: Snake::new(),
+        x: 0.0,
+        y: 0.0,
     };
 
     let mut events = Events::new(EventSettings::new());
+    events.set_ups(5);
     while let Some(e) = events.next(&mut window){
         if let Some(r) = e.render_args(){
             app.render(&r);
@@ -31,6 +32,10 @@ pub fn engine(){
 
         if let Some(u) = e.update_args(){
             app.update(&u);
+        }
+
+        if let Some(i) = e.button_args(){
+            app.input(&i);
         }
     }
 }
