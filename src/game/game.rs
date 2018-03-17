@@ -1,47 +1,49 @@
 use opengl_graphics::GlGraphics;
 use piston::input::*;
 use game::snake::*;
+use graphics::*;
 
 pub struct Game {
     pub gl: GlGraphics,
     pub s: Snake,
-    pub x: f64,
-    pub y: f64,
-    pub w_width : u32,
-    pub w_height : u32
+    pub w_width : u64,
+    pub w_height : u64,
+    pub step: u32,
+    pub i : u64
 }
 
 impl Game{
     pub fn verify_collision(&mut self){
-        if self.x * 10.0 < 0 as f64{self.x = self.w_width as f64 / 10.0;}
-        if self.x * 10.0 > self.w_width as f64{self.x = 0 as f64;}
-        if self.y * 10.0 < 0 as f64{self.y = self.w_height as f64 / 10.0;}
-        if self.y * 10.0 > self.w_height as f64{self.y = 0 as f64;}
+        let step = self.step as i64;
+        if self.s.body[0].x * step < 0 {self.s.body[0].x = self.w_width as i64 / 10;}
+        if self.s.body[0].x * step > self.w_width as i64{self.s.body[0].x = 0;}
+        if self.s.body[0].y * step < 0 {self.s.body[0].y = self.w_height as i64 / 10;}
+        if self.s.body[0].y * step > self.w_height as i64{self.s.body[0].y = 0;}
     }
 
     pub fn render(&mut self, args: &RenderArgs){
-        use graphics::*;
-
         const BACKGROUND: [f32; 4] = [0.0, 0.0, 0.0, 1.0];
         const SNAKE_COLOR : [f32; 4] = [1.0, 1.0, 1.0, 1.0];
+        let nb = self.s.body.len();
 
-        let square = rectangle::square(0.0, 0.0, 10.0);
-        let (x, y) = (self.x * 10.0, self.y * 10.0);
+        let tmp = self.s.body.to_vec();
+        let step = self.step as i64;
 
         self.gl.draw(args.viewport(), |c, gl| {
-            clear(BACKGROUND, gl);
-            let transform = c.transform.trans(x, y);
-            rectangle(SNAKE_COLOR, square, transform, gl);
+                clear(BACKGROUND, gl);
+                for i in 0..nb{
+                    let square = rectangle::square(0.0, 0.0, 10.0);
+                    let (x, y) = (tmp[i].x * step, tmp[i].y * step);
+                    let transform = c.transform.trans(x as f64, y as f64);
+                    rectangle(SNAKE_COLOR, square, transform, gl);
+                }
         });
     }
 
     pub fn update(&mut self, _args: &UpdateArgs){
-        match self.s.direction {
-            Direction::RIGHT => self.x += 1.0,
-            Direction::LEFT => self.x -= 1.0,
-            Direction::DOWN => self.y += 1.0,
-            Direction::UP => self.y -= 1.0
-        }
+        self.i += 1;
+        if self.i % 10 == 0 {self.s.add_part();}
+        self.s.move_parts();
         self.verify_collision();
     }
 

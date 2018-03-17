@@ -18,14 +18,15 @@ pub fn engine(){
     let mut app = Game{
         gl: GlGraphics::new(opengl),
         s: Snake::new(),
-        x: 0.0,
-        y: 0.0,
         w_width: 500,
-        w_height: 500
+        w_height: 500,
+        step: 10,
+        i: 0
     };
 
     let mut events = Events::new(EventSettings::new());
     events.set_ups(5);
+
     while let Some(e) = events.next(&mut window){
         if let Some(r) = e.render_args(){
             app.render(&r);
