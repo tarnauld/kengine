@@ -53,6 +53,7 @@ impl Game{
         for i in 0..self.ennemies.len(){
             if self.snake.body[0].x == self.ennemies[i].x && self.snake.body[0].y == self.ennemies[i].y{
                 self.game_over();
+                return;
             }
         }
     }

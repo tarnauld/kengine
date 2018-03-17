@@ -5,6 +5,7 @@ pub struct Snake{
     pub direction: Direction
 }
 
+ #[derive(PartialEq)]
 pub enum Direction {
     RIGHT,
     LEFT,
@@ -14,6 +15,28 @@ pub enum Direction {
 
 impl Snake{
     pub fn change_direction(&mut self, direction: Direction){
+        match direction {
+            Direction::LEFT => {
+                if self.direction == Direction::RIGHT {
+                    return;
+                }
+            }
+            Direction::RIGHT => {
+                if self.direction == Direction::LEFT {
+                    return;
+                }
+            }
+            Direction::DOWN => {
+                if self.direction == Direction::UP {
+                    return;
+                }
+            }
+            Direction::UP => {
+                if self.direction == Direction::DOWN {
+                    return;
+                }
+            }
+        }
         self.direction = direction;
     }
 
