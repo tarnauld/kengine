@@ -6,10 +6,19 @@ pub struct Game {
     pub gl: GlGraphics,
     pub s: Snake,
     pub x: f64,
-    pub y: f64
+    pub y: f64,
+    pub w_width : u32,
+    pub w_height : u32
 }
 
 impl Game{
+    pub fn verify_collision(&mut self){
+        if self.x * 10.0 < 0 as f64{self.x = self.w_width as f64 / 10.0;}
+        if self.x * 10.0 > self.w_width as f64{self.x = 0 as f64;}
+        if self.y * 10.0 < 0 as f64{self.y = self.w_height as f64 / 10.0;}
+        if self.y * 10.0 > self.w_height as f64{self.y = 0 as f64;}
+    }
+
     pub fn render(&mut self, args: &RenderArgs){
         use graphics::*;
 
@@ -33,6 +42,7 @@ impl Game{
             Direction::DOWN => self.y += 1.0,
             Direction::UP => self.y -= 1.0
         }
+        self.verify_collision();
     }
 
     pub fn input(&mut self, inp: &ButtonArgs){

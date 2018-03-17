@@ -15,12 +15,13 @@ pub fn engine(){
                                                 .exit_on_esc(true)
                                                 .build()
                                                 .unwrap();
-
     let mut app = Game{
         gl: GlGraphics::new(opengl),
         s: Snake::new(),
         x: 0.0,
         y: 0.0,
+        w_width: 500,
+        w_height: 500
     };
 
     let mut events = Events::new(EventSettings::new());
