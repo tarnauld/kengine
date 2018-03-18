@@ -3,9 +3,9 @@ use piston::input::*;
 use game::snake::*;
 use graphics::*;
 use game::coord::Coord;
-use rand;
-use rand::Rng;
 use game::assets::Assets;
+use game::collide::*;
+use game::utils::choose_random;
 
 pub struct Game {
     pub gl: GlGraphics,
@@ -17,7 +17,6 @@ pub struct Game {
     pub assets: Assets,
     pub score: u32,
     pub step: u32,
-    pub ups: u64,
     pub i : u64
 }
 
@@ -33,38 +32,27 @@ impl Game{
             assets : Assets::new(),
             score: 0,
             step: s,
-            ups: 5,
             i: 0
         }
     }
 
     pub fn verify_collision(&mut self){
-        let step = self.step as i64;
         let mut v : Vec<usize> = Vec::new();
-        let mut to_remove = 0;
 
-        if self.snake.body[0].x * step < 0 {self.snake.body[0].x = self.w_width as i64 / self.step as i64;}
-        if self.snake.body[0].x * step > self.w_width as i64{self.snake.body[0].x = 0;}
-        if self.snake.body[0].y * step < 0 {self.snake.body[0].y = self.w_height as i64 / self.step as i64;}
-        if self.snake.body[0].y * step > self.w_height as i64{self.snake.body[0].y = 0;}
+        collide_with_window(&mut self.snake.body[0], self.w_width as i64, self.w_height as i64, self.step as i64);
 
         if self.snake.body.len() > 1{
-            for i in 1..self.snake.body.len(){
-                if self.snake.body[0].x == self.snake.body[i].x && self.snake.body[0].y == self.snake.body[i].y{
-                    to_remove = i;
+            let to_remove = collide_with_head(&self.snake.body[0], &self.snake.body);
+            if to_remove > 0 {
+                for i in (to_remove..self.snake.body.len() as i32).rev(){
+                    self.snake.body.remove(i as usize);
+                    self.score -= 1;
                 }
             }
         }
 
-        if to_remove != 0{
-            for i in (to_remove..self.snake.body.len()).rev(){
-                self.snake.body.remove(i);
-                self.score -= 1;
-            }
-        }
-
         for i in 0..self.fruits.len(){
-            if self.snake.body[0].x == self.fruits[i].x && self.snake.body[0].y == self.fruits[i].y{
+            if collision_exists(&mut self.snake.body[0], &self.fruits[i]){
                 v.push(i);
                 self.score += 1;
                 self.snake.add_part();
@@ -76,7 +64,7 @@ impl Game{
         }
 
         for i in 0..self.ennemies.len(){
-            if self.snake.body[0].x == self.ennemies[i].x && self.snake.body[0].y == self.ennemies[i].y{
+            if  collision_exists(&mut self.snake.body[0], &self.ennemies[i]){
                 self.game_over();
                 return;
             }
@@ -132,14 +120,14 @@ impl Game{
             }
         }
         if self.i % 20 == 0 {
-            let (x, y) = self.choose_random();
+            let (x, y) = choose_random(self.w_width as i64, self.w_height as i64, self.step as i64);
             self.fruits.push(Coord{
                 x: x,
                 y: y
             });
         }
         if self.i % 30 == 0 {
-            let (x, y) = self.choose_random();
+            let (x, y) = choose_random(self.w_width as i64, self.w_height as i64, self.step as i64);
             self.ennemies.push(Coord{
                 x: x,
                 y: y
@@ -160,11 +148,6 @@ impl Game{
                 _ => {}
             }
         }
-    }
-
-    fn choose_random(&mut self) -> (i64, i64){
-        (rand::thread_rng().gen_range(0, self.w_width as i64 / self.step as i64),
-        rand::thread_rng().gen_range(0, self.w_height as i64 / self.step as i64))
     }
 
     pub fn game_over(&mut self){
