@@ -5,6 +5,7 @@ use graphics::*;
 use game::coord::Coord;
 use rand;
 use rand::Rng;
+use game::assets::Assets;
 
 pub struct Game {
     pub gl: GlGraphics,
@@ -13,7 +14,10 @@ pub struct Game {
     pub ennemies: Vec<Coord>,
     pub w_width : u32,
     pub w_height : u32,
+    pub assets: Assets,
+    pub score: u32,
     pub step: u32,
+    pub ups: u64,
     pub i : u64
 }
 
@@ -26,7 +30,10 @@ impl Game{
             ennemies: vec![],
             w_width: w,
             w_height: h,
+            assets : Assets::new(),
+            score: 0,
             step: s,
+            ups: 5,
             i: 0
         }
     }
@@ -34,14 +41,32 @@ impl Game{
     pub fn verify_collision(&mut self){
         let step = self.step as i64;
         let mut v : Vec<usize> = Vec::new();
+        let mut to_remove = 0;
+
         if self.snake.body[0].x * step < 0 {self.snake.body[0].x = self.w_width as i64 / self.step as i64;}
         if self.snake.body[0].x * step > self.w_width as i64{self.snake.body[0].x = 0;}
         if self.snake.body[0].y * step < 0 {self.snake.body[0].y = self.w_height as i64 / self.step as i64;}
         if self.snake.body[0].y * step > self.w_height as i64{self.snake.body[0].y = 0;}
 
+        if self.snake.body.len() > 1{
+            for i in 1..self.snake.body.len(){
+                if self.snake.body[0].x == self.snake.body[i].x && self.snake.body[0].y == self.snake.body[i].y{
+                    to_remove = i;
+                }
+            }
+        }
+
+        if to_remove != 0{
+            for i in (to_remove..self.snake.body.len()).rev(){
+                self.snake.body.remove(i);
+                self.score -= 1;
+            }
+        }
+
         for i in 0..self.fruits.len(){
             if self.snake.body[0].x == self.fruits[i].x && self.snake.body[0].y == self.fruits[i].y{
                 v.push(i);
+                self.score += 1;
                 self.snake.add_part();
             }
         }
@@ -59,39 +84,37 @@ impl Game{
     }
 
     pub fn render(&mut self, args: &RenderArgs){
-        const BACKGROUND: [f32; 4] = [0.0, 0.0, 0.0, 1.0];
-        const SNAKE_COLOR : [f32; 4] = [1.0, 1.0, 1.0, 1.0];
-        const FRUIT_COLOR : [f32; 4] = [1.0, 0.0, 0.0, 1.0];
-        const ENNEMY_COLOR : [f32; 4] = [0.0, 0.0, 1.0, 1.0];
-
         let nb = self.snake.body.len();
 
         let snake = self.snake.body.to_vec();
         let step = self.step as i64;
         let fruits = self.fruits.to_vec();
         let ennemies = self.ennemies.to_vec();
-
         let size = self.step as f64;
+        let texture = &self.assets.texture;
+        let snake_color = self.assets.snake_color;
+        let fruit_color = self.assets.fruit_color;
+        let ennemy_color = self.assets.ennemy_color;
 
         self.gl.draw(args.viewport(), |c, gl| {
-                clear(BACKGROUND, gl);
+                image(texture, c.transform, gl);
                 for i in 0..nb{
                     let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (snake[i].x * step, snake[i].y * step);
                     let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(SNAKE_COLOR, square, transform, gl);
+                    rectangle(snake_color, square, transform, gl);
                 }
                 for i in 0..fruits.len(){
                     let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (fruits[i].x * step, fruits[i].y * step);
                     let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(FRUIT_COLOR, square, transform, gl);
+                    rectangle(fruit_color, square, transform, gl);
                 }
                 for i in 0..ennemies.len(){
                     let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (ennemies[i].x * step, ennemies[i].y * step);
                     let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(ENNEMY_COLOR, square, transform, gl);
+                    rectangle(ennemy_color, square, transform, gl);
                 }
         });
     }
