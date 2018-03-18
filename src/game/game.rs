@@ -78,31 +78,24 @@ impl Game{
         let step = self.step as i64;
         let fruits = self.fruits.to_vec();
         let ennemies = self.ennemies.to_vec();
-        let size = self.step as f64;
         let texture = &self.assets.texture;
-        let snake_color = self.assets.snake_color;
-        let fruit_color = self.assets.fruit_color;
-        let ennemy_color = self.assets.ennemy_color;
+        let snake_texture = &self.assets.snake_texture;
+        let fruit_texture = &self.assets.fruit_texture;
+        let ennemy_texture = &self.assets.ennemy_texture;
 
         self.gl.draw(args.viewport(), |c, gl| {
                 image(texture, c.transform, gl);
                 for i in 0..nb{
-                    let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (snake[i].x * step, snake[i].y * step);
-                    let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(snake_color, square, transform, gl);
+                    image(snake_texture, c.transform.trans(x as f64, y as f64), gl);
                 }
                 for i in 0..fruits.len(){
-                    let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (fruits[i].x * step, fruits[i].y * step);
-                    let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(fruit_color, square, transform, gl);
+                    image(fruit_texture, c.transform.trans(x as f64, y as f64), gl);
                 }
                 for i in 0..ennemies.len(){
-                    let square = rectangle::square(0.0, 0.0, size);
                     let (x, y) = (ennemies[i].x * step, ennemies[i].y * step);
-                    let transform = c.transform.trans(x as f64, y as f64);
-                    rectangle(ennemy_color, square, transform, gl);
+                    image(ennemy_texture, c.transform.trans(x as f64, y as f64), gl);
                 }
         });
     }
