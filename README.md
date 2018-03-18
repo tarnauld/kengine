@@ -5,13 +5,13 @@ Snake-Rust is just a basic old school game written in Rust for the fun.
 # New Features!
 
   - New controls added. You cannot go in the opposite direction.
-  - Some fruits (in red) and ennemies (in blue) are added randomly.
+  - Some fruits (apple) and ennemies (fog) are added randomly.
 
-#Preview:
-![alt text](https://github.com/tarnauld/snake-rust/tree/master/assets/snake_preview.png "Logo Title Text 1")
+# Preview:
+![Settings Window](https://raw.github.com/tarnauld/snake-rust/master/assets/snake_preview.png)
 
 Coming soon:
-  - Spritesheet and animation
+  - Spritesheet and animation 
   - Interactive menu.
   - Sound and game over screen.
 
