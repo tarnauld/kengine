@@ -5,8 +5,8 @@ extern crate opengl_graphics;
 extern crate rand;
 extern crate piston_window;
 
-mod game;
-use game::engine::engine;
+mod games;
+use games::engine::engine;
 
 fn main(){
     engine();

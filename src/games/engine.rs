@@ -1,7 +1,7 @@
 use piston_window::*;
 use opengl_graphics::OpenGL;
 
-use game::game::Game;
+use games::game::Game;
 
 pub fn engine(){
     let opengl = OpenGL::V3_2;

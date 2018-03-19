@@ -1,4 +1,4 @@
-use game::coord::Coord;
+use games::generics::coord::Coord;
 
 pub fn collide_with_window(a: &mut Coord, w: i64, h: i64, s: i64){
     if a.x * s < 0 {a.x = w / s;}

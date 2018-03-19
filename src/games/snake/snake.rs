@@ -1,16 +1,8 @@
-use game::coord::Coord;
+use games::generics::{coord::Coord, direction::Direction};
 
 pub struct Snake{
     pub body: Vec<Coord>,
     pub direction: Direction
-}
-
- #[derive(PartialEq)]
-pub enum Direction {
-    RIGHT,
-    LEFT,
-    DOWN,
-    UP
 }
 
 impl Snake{

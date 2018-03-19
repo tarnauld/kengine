@@ -1,11 +1,9 @@
 use opengl_graphics::{GlGraphics, OpenGL};
 use piston::input::*;
-use game::snake::*;
+use games::snake::snake::*;
 use graphics::*;
-use game::coord::Coord;
-use game::assets::Assets;
-use game::collide::*;
-use game::utils::choose_random;
+use games::generics::{coord::*, direction::*, collide::*, utils::*};
+use games::snake::assets::Assets;
 
 pub struct Game {
     pub gl: GlGraphics,
