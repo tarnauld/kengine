@@ -1,0 +1,36 @@
+cargo:rustc-link-lib=dl
+TARGET = Some("x86_64-unknown-linux-gnu")
+OPT_LEVEL = Some("0")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CC_x86_64-unknown-linux-gnu = None
+CC_x86_64_unknown_linux_gnu = None
+HOST_CC = None
+CC = None
+HOST = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+CFLAGS_x86_64-unknown-linux-gnu = None
+CFLAGS_x86_64_unknown_linux_gnu = None
+HOST_CFLAGS = None
+CFLAGS = None
+DEBUG = Some("true")
+running: "cc" "-O0" "-ffunction-sections" "-fdata-sections" "-fPIC" "-g" "-m64" "-Wall" "-Wextra" "-o" "/home/uka/Documents/rust/snake/games/target/debug/build/libloading-da993dd9a5745f8c/out/src/os/unix/global_static.o" "-c" "src/os/unix/global_static.c"
+exit code: 0
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+HOST = Some("x86_64-unknown-linux-gnu")
+AR_x86_64-unknown-linux-gnu = None
+AR_x86_64_unknown_linux_gnu = None
+HOST_AR = None
+AR = None
+TARGET = Some("x86_64-unknown-linux-gnu")
+TARGET = Some("x86_64-unknown-linux-gnu")
+running: "ar" "crs" "/home/uka/Documents/rust/snake/games/target/debug/build/libloading-da993dd9a5745f8c/out/libglobal_static.a" "/home/uka/Documents/rust/snake/games/target/debug/build/libloading-da993dd9a5745f8c/out/src/os/unix/global_static.o"
+exit code: 0
+TARGET = Some("x86_64-unknown-linux-gnu")
+cargo:rustc-link-lib=static=global_static
+cargo:rustc-link-search=native=/home/uka/Documents/rust/snake/games/target/debug/build/libloading-da993dd9a5745f8c/out

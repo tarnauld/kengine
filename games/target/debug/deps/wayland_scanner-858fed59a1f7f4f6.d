@@ -1,0 +1,11 @@
+/home/uka/Documents/rust/snake/games/target/debug/deps/libwayland_scanner-858fed59a1f7f4f6.rlib: /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/lib.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/util.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/parse.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/protocol.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/side.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/interface_gen.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/code_gen.rs
+
+/home/uka/Documents/rust/snake/games/target/debug/deps/wayland_scanner-858fed59a1f7f4f6.d: /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/lib.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/util.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/parse.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/protocol.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/side.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/interface_gen.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/code_gen.rs
+
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/lib.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/util.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/parse.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/protocol.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/side.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/interface_gen.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/wayland-scanner-0.12.5/src/code_gen.rs:

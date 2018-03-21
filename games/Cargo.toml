@@ -1,0 +1,11 @@
+[package]
+name = "snake"
+version = "0.1.0"
+authors = ["timothee.arnauld1@gmail.com <timothee.arnauld1@gmail.com>"]
+
+[[bin]]
+name = "snake"
+path="gamesnake/main.rs"
+
+[dependencies]
+gamengine = {path = "../kengine/"}

@@ -1,0 +1,10 @@
+/home/uka/Documents/rust/snake/gamengine/target/debug/deps/libserde_derive_internals-45fde9c65b33a12f.rlib: /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/lib.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ast.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/attr.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ctxt.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/case.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/check.rs
+
+/home/uka/Documents/rust/snake/gamengine/target/debug/deps/serde_derive_internals-45fde9c65b33a12f.d: /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/lib.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ast.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/attr.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ctxt.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/case.rs /home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/check.rs
+
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/lib.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ast.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/attr.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/ctxt.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/case.rs:
+/home/uka/.cargo/registry/src/github.com-1ecc6299db9ec823/serde_derive_internals-0.21.0/src/check.rs:
