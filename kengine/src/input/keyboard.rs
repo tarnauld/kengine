@@ -1,7 +1,8 @@
 use input::kies::Kies;
+use std::collections::HashMap;
 
 pub struct Keyboard{
-    //h: HashMap<Kies, &Fn()>
+    h: HashMap<Kies, &Fn()>
 }
 
 impl Keyboard{
