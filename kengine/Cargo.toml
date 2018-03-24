@@ -1,5 +1,5 @@
 [package]
-name = "gamengine"
+name = "kengine"
 version = "0.1.0"
 authors = ["timothee.arnauld1@gmail.com <timothee.arnauld1@gmail.com>"]
 
@@ -14,3 +14,4 @@ pistoncore-glutin_window = "0.45.0"
 piston2d-opengl_graphics = "0.52.0"
 rand = "0.4"
 piston_window = "0.77.0"
+find_folder = "*"

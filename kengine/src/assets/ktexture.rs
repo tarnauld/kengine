@@ -2,19 +2,17 @@ use opengl_graphics::{Texture, TextureSettings};
 use std::path::Path;
 
 pub struct Ktexture{
-    t: Option<Texture>
+    pub t: Texture
 }
 
-impl Ktexture {
-    pub fn new() -> Ktexture{
+impl Ktexture{
+    pub fn new(p: &str) -> Ktexture{
         Ktexture{
-            t: None
+            t: Texture::from_path(&Path::new(&p), &TextureSettings::new()).unwrap()
         }
     }
 
-    pub fn load_ktexture(p: String) -> Ktexture{
-        Ktexture{
-            t: Some(Texture::from_path(&Path::new(&p), &TextureSettings::new()).unwrap())
-        }
+    pub fn get_texture(&self) -> &Texture{
+        &self.t
     }
 }

@@ -1,6 +1,7 @@
 use piston_window::*;
 use opengl_graphics::OpenGL;
 use engine::kgame::Kgame;
+use assets::ksprite::Ksprite;
 
 pub struct Kengine {
     window: PistonWindow,
@@ -8,24 +9,21 @@ pub struct Kengine {
 }
 
 impl Kengine{
-    pub fn new(title: String, width: u32, height: u32) -> Kengine{
+    pub fn new(title: &str, width: u32, height: u32) -> Kengine{
         let opengl = OpenGL::V3_2;
         Kengine{
             window: WindowSettings::new(title,[width, height]).opengl(opengl).exit_on_esc(true).build().unwrap(),
-            game: Kgame::new()
+            game: Kgame::new(opengl)
         }
     }
 
-    pub fn init_render(&mut self, f: &Fn() -> i32){
-
-    }
-
-    pub fn init_update(&mut self, f: &Fn() -> i32){
-
+    pub fn add_ksprite(&mut self, k : Ksprite){
+        self.game.a.add(k);
     }
 
     pub fn run(&mut self){
         let mut events = Events::new(EventSettings::new());
+
         while let Some(e) = events.next(&mut self.window){
             if let Some(r) = e.render_args(){
                 self.game.render(&r);

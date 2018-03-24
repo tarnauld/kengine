@@ -10,4 +10,12 @@ impl Kassets{
                 s: Vec::new()
             }
         }
+
+        pub fn add(&mut self, ks: Ksprite){
+            self.s.push(ks);
+        }
+
+        pub fn get_kassets(&mut self) -> &mut Vec<Ksprite>{
+            &mut self.s
+        }
 }

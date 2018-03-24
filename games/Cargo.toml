@@ -8,4 +8,4 @@ name = "snake"
 path="gamesnake/main.rs"
 
 [dependencies]
-gamengine = {path = "../kengine/"}
+kengine = {path = "../kengine/"}
