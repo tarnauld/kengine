@@ -2,6 +2,7 @@ use piston_window::*;
 use opengl_graphics::OpenGL;
 use engine::kgame::Kgame;
 use assets::ksprite::Ksprite;
+use input::keyboard::Keyboard;
 
 pub struct Kengine {
     window: PistonWindow,
@@ -19,6 +20,10 @@ impl Kengine{
 
     pub fn add_ksprite(&mut self, k : Ksprite){
         self.game.a.add(k);
+    }
+
+    pub fn add_keyboard(&mut self, k: Keyboard){
+        self.game.k = Some(k);
     }
 
     pub fn run(&mut self){

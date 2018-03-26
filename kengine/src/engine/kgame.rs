@@ -2,9 +2,11 @@ use assets::kassets::Kassets;
 use opengl_graphics::{GlGraphics, OpenGL};
 use piston::input::*;
 use graphics::*;
+use input::keyboard::Keyboard;
 
 pub struct Kgame {
     gl: GlGraphics,
+    pub k: Option<Keyboard>,
     pub a: Kassets
 }
 
@@ -12,6 +14,7 @@ impl Kgame{
     pub fn new(opengl: OpenGL) -> Kgame{
         Kgame{
             gl: GlGraphics::new(opengl),
+            k: None,
             a: Kassets::new()
         }
     }
