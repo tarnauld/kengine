@@ -1,5 +1,5 @@
 #[derive(PartialEq, Eq, Hash)]
-pub enum Kies{
+pub enum Keys{
     A,
     B,
     C,

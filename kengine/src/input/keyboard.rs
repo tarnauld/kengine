@@ -1,8 +1,8 @@
-use input::kies::Kies;
+use input::keys::Keys;
 use std::collections::HashMap;
 
 pub struct Keyboard{
-    h: HashMap<Kies, fn()>
+    h: HashMap<Keys, ()>
 }
 
 impl Keyboard{
@@ -11,7 +11,7 @@ impl Keyboard{
             h: HashMap::new()
         }
     }
-    pub fn binding(&mut self, k: Kies, f : fn()){
+    pub fn binding(&mut self, k: Keys, f : ()){
         self.h.insert(k, f);
     }
 }
@@ -19,16 +19,16 @@ impl Keyboard{
 #[cfg(test)]
 mod test{
     use input::keyboard::Keyboard;
-    use input::keyboard::Kies;
+    use input::keyboard::Keys;
     #[test]
     fn should_insert_function(){
         let mut k: Keyboard = Keyboard::keyboard_settings();
-        let key = Kies::A;
+        let key = Keys::A;
         let mut size = 0;
-        let closure = || println!("Hello");
+        let closure = println!("Hello");
         k.binding(key, closure);
         for(_k, f) in k.h{
-            f();
+            f;
             size += 1;
         }
         assert_eq!(size, 1);

@@ -1,2 +1,2 @@
-pub mod kies;
+pub mod keys;
 pub mod keyboard;
