@@ -4,7 +4,7 @@ use piston::input::*;
 use graphics::*;
 use input::keyboard::Keyboard;
 
-pub struct Kgame {
+pub struct Kgame{
     gl: GlGraphics,
     pub k: Option<Keyboard>,
     pub a: Kassets
@@ -30,8 +30,10 @@ impl Kgame{
         });
     }
 
-    pub fn update(&self, _args: &UpdateArgs){
-
+    pub fn update(&mut self, _args: &UpdateArgs){
+        for o in self.a.get_kassets().iter_mut(){
+            o.move_ksprite();
+        }
     }
 
     pub fn input(&self, _inp: &ButtonArgs){

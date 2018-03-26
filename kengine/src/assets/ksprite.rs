@@ -36,4 +36,14 @@ impl Ksprite{
     pub fn get_kcoord(self) -> Kcoord{
         self.c
     }
+
+    pub fn move_ksprite(&mut self){
+        match self.d {
+            None => return,
+            Some(Kdirection::RIGHT) => self.c.x += 1.0,
+            Some(Kdirection::LEFT) => self.c.x -= 1.0,
+            Some(Kdirection::DOWN) => self.c.y += 1.0,
+            Some(Kdirection::UP) => self.c.y -= 1.0
+        }
+    }
 }

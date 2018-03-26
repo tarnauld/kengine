@@ -5,6 +5,7 @@ extern crate opengl_graphics;
 extern crate rand;
 extern crate find_folder;
 extern crate piston_window;
+extern crate boxfnonce;
 
 pub mod engine;
 pub mod generics;

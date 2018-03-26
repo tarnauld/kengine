@@ -4,7 +4,7 @@ use engine::kgame::Kgame;
 use assets::ksprite::Ksprite;
 use input::keyboard::Keyboard;
 
-pub struct Kengine {
+pub struct Kengine{
     window: PistonWindow,
     game: Kgame
 }
