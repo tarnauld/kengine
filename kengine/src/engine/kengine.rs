@@ -3,6 +3,8 @@ use opengl_graphics::OpenGL;
 use engine::kgame::Kgame;
 use assets::ksprite::Ksprite;
 use input::keyboard::Keyboard;
+use std::rc::Rc;
+use std::cell::RefCell;
 
 pub struct Kengine{
     window: PistonWindow,
@@ -18,7 +20,7 @@ impl Kengine{
         }
     }
 
-    pub fn add_ksprite(&mut self, k : Ksprite){
+    pub fn add_ksprite(&mut self, k : Rc<RefCell<Ksprite>>){
         self.game.a.add(k);
     }
 

@@ -24,15 +24,16 @@ impl Kgame{
 
         self.gl.draw(args.viewport(), |c, gl| {
             for o in k.iter(){
-                let (texture, x, y) = o.get_ksprite();
+                let x = o.borrow_mut();
+                let (texture, x, y) = x.get_ksprite();
                 image(texture.as_ref().unwrap().get_texture(), c.transform.trans(x, y), gl);
             }
         });
     }
 
     pub fn update(&mut self, _args: &UpdateArgs){
-        for o in self.a.get_kassets().iter_mut(){
-            o.move_ksprite();
+        for o in self.a.get_kassets().iter(){
+            o.borrow_mut().move_ksprite();
         }
     }
 

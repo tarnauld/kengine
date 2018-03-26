@@ -1,7 +1,9 @@
 use assets::ksprite::Ksprite;
+use std::rc::Rc;
+use std::cell::RefCell;
 
 pub struct Kassets{
-    s: Vec<Ksprite>
+    s: Vec<Rc<RefCell<Ksprite>>>
 }
 
 impl Kassets{
@@ -11,11 +13,11 @@ impl Kassets{
             }
         }
 
-        pub fn add(&mut self, ks: Ksprite){
+        pub fn add(&mut self, ks: Rc<RefCell<Ksprite>>){
             self.s.push(ks);
         }
 
-        pub fn get_kassets(&mut self) -> &mut Vec<Ksprite>{
+        pub fn get_kassets(&mut self) -> &mut Vec<Rc<RefCell<Ksprite>>>{
             &mut self.s
         }
 }
