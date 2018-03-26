@@ -7,14 +7,16 @@ use std::cell::RefCell;
 pub struct Ksprite{
     t: Option<Ktexture>,
     c: Kcoord,
+    s: f64,
     d: Option<Kdirection>
 }
 
 impl Ksprite{
-    pub fn new(x: f64, y: f64) -> Rc<RefCell<Ksprite>>{
+    pub fn new(x: f64, y: f64, s: f64) -> Rc<RefCell<Ksprite>>{
         let k = Ksprite{
             t: None,
             c: Kcoord::new(x, y),
+            s: s,
             d: None
         };
         Rc::new(RefCell::new(k))
@@ -43,10 +45,10 @@ impl Ksprite{
     pub fn move_ksprite(&mut self){
         match self.d {
             None => return,
-            Some(Kdirection::RIGHT) => self.c.x += 1.0,
-            Some(Kdirection::LEFT) => self.c.x -= 1.0,
-            Some(Kdirection::DOWN) => self.c.y += 1.0,
-            Some(Kdirection::UP) => self.c.y -= 1.0
+            Some(Kdirection::RIGHT) => self.c.x += 1.0 * self.s,
+            Some(Kdirection::LEFT) => self.c.x -= 1.0 * self.s,
+            Some(Kdirection::DOWN) => self.c.y += 1.0 * self.s,
+            Some(Kdirection::UP) => self.c.y -= 1.0 * self.s
         }
     }
 }

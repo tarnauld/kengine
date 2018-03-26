@@ -2,21 +2,23 @@ use piston_window::*;
 use opengl_graphics::OpenGL;
 use engine::kgame::Kgame;
 use assets::ksprite::Ksprite;
-use input::keyboard::Keyboard;
 use std::rc::Rc;
 use std::cell::RefCell;
+use engine::kevents::Kevents;
 
 pub struct Kengine{
     window: PistonWindow,
-    game: Kgame
+    game: Kgame,
+    ups: u64
 }
 
 impl Kengine{
-    pub fn new(title: &str, width: u32, height: u32) -> Kengine{
+    pub fn new(title: &str, width: u32, height: u32, ups: u64) -> Kengine{
         let opengl = OpenGL::V3_2;
         Kengine{
             window: WindowSettings::new(title,[width, height]).opengl(opengl).exit_on_esc(true).build().unwrap(),
-            game: Kgame::new(opengl)
+            game: Kgame::new(opengl),
+            ups: ups
         }
     }
 
@@ -24,13 +26,9 @@ impl Kengine{
         self.game.a.add(k);
     }
 
-    pub fn add_keyboard(&mut self, k: Keyboard){
-        self.game.k = Some(k);
-    }
-
-    pub fn run(&mut self){
+    pub fn run(&mut self) -> Kevents{
         let mut events = Events::new(EventSettings::new());
-
+        events.set_ups(self.ups);
         while let Some(e) = events.next(&mut self.window){
             if let Some(r) = e.render_args(){
                 self.game.render(&r);
@@ -41,8 +39,9 @@ impl Kengine{
             }
 
             if let Some(i) = e.button_args(){
-                self.game.input(&i);
+                return self.game.input(&i);
             }
         }
+        return Kevents::new(None);
     }
 }
