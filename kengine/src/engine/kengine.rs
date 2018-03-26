@@ -2,8 +2,6 @@ use piston_window::*;
 use opengl_graphics::OpenGL;
 use engine::kgame::Kgame;
 use assets::ksprite::Ksprite;
-use std::rc::Rc;
-use std::cell::RefCell;
 use engine::kevents::Kevents;
 
 pub struct Kengine{
@@ -22,8 +20,12 @@ impl Kengine{
         }
     }
 
-    pub fn add_ksprite(&mut self, k : Rc<RefCell<Ksprite>>){
-        self.game.a.add(k);
+    pub fn add_ksprite(&mut self, id: &str, k : Ksprite){
+        self.game.a.add(id, k);
+    }
+
+    pub fn get_ksprite(&mut self, id: &str) -> &mut Ksprite{
+        self.game.a.get_kassets().get_mut(id).unwrap()
     }
 
     pub fn run(&mut self) -> Kevents{

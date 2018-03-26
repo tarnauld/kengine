@@ -22,8 +22,8 @@ impl Kgame{
         let k = self.a.get_kassets();
 
         self.gl.draw(args.viewport(), |c, gl| {
-            for o in k.iter(){
-                let x = o.borrow_mut();
+            for (_i, o) in k{
+                let x = o;
                 let (texture, x, y) = x.get_ksprite();
                 image(texture.as_ref().unwrap().get_texture(), c.transform.trans(x, y), gl);
             }
@@ -31,8 +31,8 @@ impl Kgame{
     }
 
     pub fn update(&mut self, _args: &UpdateArgs){
-        for o in self.a.get_kassets().iter(){
-            o.borrow_mut().move_ksprite();
+        for (_i, o) in self.a.get_kassets(){
+            o.move_ksprite();
         }
     }
 

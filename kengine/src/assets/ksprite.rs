@@ -1,8 +1,6 @@
 use generics::kcoord::Kcoord;
 use generics::kdirection::Kdirection;
 use assets::ktexture::Ktexture;
-use std::rc::Rc;
-use std::cell::RefCell;
 
 pub struct Ksprite{
     t: Option<Ktexture>,
@@ -12,14 +10,13 @@ pub struct Ksprite{
 }
 
 impl Ksprite{
-    pub fn new(x: f64, y: f64, s: f64) -> Rc<RefCell<Ksprite>>{
-        let k = Ksprite{
+    pub fn new(x: f64, y: f64, s: f64) -> Ksprite{
+        Ksprite{
             t: None,
             c: Kcoord::new(x, y),
             s: s,
             d: None
-        };
-        Rc::new(RefCell::new(k))
+        }
     }
 
     pub fn add_texture(&mut self, t: Ktexture){
