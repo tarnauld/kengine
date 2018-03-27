@@ -35,8 +35,8 @@ impl Ksprite{
         return (&self.t, self.c.x, self.c.y);
     }
 
-    pub fn get_kcoord(self) -> Kcoord{
-        self.c
+    pub fn get_kcoord(&self) -> &Kcoord{
+        &self.c
     }
 
     pub fn move_ksprite(&mut self){

@@ -14,9 +14,10 @@ fn main(){
     ground.add_texture(ground_img);
     kengine.add_ksprite("ground", ground);
 
-    let mut snake = Ksprite::new(500., 300., 30.);
+    let mut snake = Ksprite::new(0., 0., 30.);
     let snake_img = Ktexture::new("./gamesnake/assets/snake.png");
     snake.add_texture(snake_img);
+    snake.add_direction(Kdirection::RIGHT);
     kengine.add_ksprite("snake", snake);
 
     loop{

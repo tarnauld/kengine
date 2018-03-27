@@ -1,22 +1,22 @@
 use assets::ksprite::Ksprite;
-use std::collections::HashMap;
+use linked_hash_map::LinkedHashMap;
 
 pub struct Kassets{
-    s: HashMap<String, Ksprite>
+    s: LinkedHashMap<String, Ksprite>
 }
 
 impl Kassets{
         pub fn new() -> Kassets{
             Kassets{
-                s: HashMap::new()
+                s: LinkedHashMap::new()
             }
         }
 
-        pub fn add(&mut self, id: &str, ks: Ksprite){
+        pub fn add(&mut self, id: String, ks: Ksprite){
             self.s.insert(id.to_string(), ks);
         }
 
-        pub fn get_kassets(&mut self) -> &mut HashMap<String, Ksprite>{
+        pub fn get_kassets(&mut self) -> &mut LinkedHashMap<String, Ksprite>{
             &mut self.s
         }
 }

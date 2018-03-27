@@ -23,8 +23,7 @@ impl Kgame{
 
         self.gl.draw(args.viewport(), |c, gl| {
             for (_i, o) in k{
-                let x = o;
-                let (texture, x, y) = x.get_ksprite();
+                let (texture, x, y) = o.get_ksprite();
                 image(texture.as_ref().unwrap().get_texture(), c.transform.trans(x, y), gl);
             }
         });

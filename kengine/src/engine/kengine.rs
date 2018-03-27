@@ -21,7 +21,7 @@ impl Kengine{
     }
 
     pub fn add_ksprite(&mut self, id: &str, k : Ksprite){
-        self.game.a.add(id, k);
+        self.game.a.add(String::from(id), k);
     }
 
     pub fn get_ksprite(&mut self, id: &str) -> &mut Ksprite{
