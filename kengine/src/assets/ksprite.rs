@@ -31,6 +31,19 @@ impl Ksprite{
         return &self.d;
     }
 
+    pub fn set_kcoord_x(&mut self, x : f64){
+        self.c.x = x;
+    }
+
+    pub fn set_kcoord_y(&mut self, y : f64){
+        self.c.y = y;
+    }
+
+    pub fn set_kcoord(&mut self, x: f64, y: f64){
+        self.c.x = x;
+        self.c.y = y;
+    }
+
     pub fn get_ksprite(&self) -> (&Option<Ktexture>, f64, f64){
         return (&self.t, self.c.x, self.c.y);
     }

@@ -1,10 +1,19 @@
 use generics::kcoord::Kcoord;
 
-pub fn collide_with_window(a: &mut Kcoord, w: f64, h: f64, s: f64){
-    if a.x * s < 0. {a.x = w / s;}
-    if a.x * s > w {a.x = 0.;}
-    if a.y * s < 0. {a.y = h / s;}
-    if a.y * s > h {a.y = 0.;}
+pub enum WindowBorders{
+    RIGHT,
+    LEFT,
+    DOWN,
+    UP,
+    CENTER
+}
+
+pub fn collide_with_window(a: &Kcoord, w: f64, h: f64) -> WindowBorders{
+    if a.x <= 0. {return WindowBorders::LEFT;}
+    if a.x >= w {return WindowBorders::RIGHT;}
+    if a.y <= 0. {return WindowBorders::UP;}
+    if a.y >= h {return WindowBorders::DOWN;}
+    return WindowBorders::CENTER;
 }
 
 pub fn collide_with_part(a: &Kcoord, b: &Vec<Kcoord>) -> i32{

@@ -7,7 +7,9 @@ use engine::kevents::Kevents;
 pub struct Kengine{
     window: PistonWindow,
     game: Kgame,
-    ups: u64
+    ups: u64,
+    w: f64,
+    h: f64
 }
 
 impl Kengine{
@@ -16,7 +18,9 @@ impl Kengine{
         Kengine{
             window: WindowSettings::new(title,[width, height]).opengl(opengl).exit_on_esc(true).build().unwrap(),
             game: Kgame::new(opengl),
-            ups: ups
+            ups: ups,
+            w: width as f64,
+            h: height as f64
         }
     }
 
@@ -37,13 +41,13 @@ impl Kengine{
             }
 
             if let Some(u) = e.update_args(){
-                self.game.update(&u);
+                return self.game.update(&u, self.w, self.h);
             }
 
             if let Some(i) = e.button_args(){
                 return self.game.input(&i);
             }
         }
-        return Kevents::new(None);
+        return Kevents::new(None, None);
     }
 }

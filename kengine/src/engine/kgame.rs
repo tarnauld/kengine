@@ -4,6 +4,9 @@ use piston::input::*;
 use graphics::*;
 use input::keys::convert_key;
 use engine::kevents::Kevents;
+use engine::kevents::KeventType;
+use generics::kcollide::collide_with_window;
+use generics::kcollide::WindowBorders;
 
 pub struct Kgame{
     gl: GlGraphics,
@@ -29,19 +32,25 @@ impl Kgame{
         });
     }
 
-    pub fn update(&mut self, _args: &UpdateArgs){
+    pub fn update(&mut self, _args: &UpdateArgs, w: f64, h: f64) -> Kevents{
+        let mut m : Option<Kevents> = None;
         for (_i, o) in self.a.get_kassets(){
             o.move_ksprite();
+            match collide_with_window(o.get_kcoord(), w, h){
+                WindowBorders::CENTER => {},
+                _ => m = Some(Kevents::new(None, Some(KeventType::COLLISION))),
+            }
         }
+        return m.unwrap();
     }
 
     pub fn input(&mut self, inp: &ButtonArgs) -> Kevents{
         let b = inp.button;
 
         if inp.state == ButtonState::Press{
-            Kevents::new(convert_key(&b))
+            Kevents::new(convert_key(&b), Some(KeventType::KEYPRESSED))
         }else{
-            Kevents::new(None)
+            Kevents::new(None, None)
         }
     }
 }

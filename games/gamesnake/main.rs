@@ -5,6 +5,9 @@ use kengine::assets::ksprite::Ksprite;
 use kengine::assets::ktexture::Ktexture;
 use kengine::generics::kdirection::Kdirection;
 use kengine::input::keys::Keys;
+use kengine::generics::kcollide::collide_with_window;
+use kengine::generics::kcollide::WindowBorders;
+use kengine::engine::kevents::KeventType;
 
 fn main(){
     let mut kengine : Kengine = Kengine::new("Snake", 1200, 750, 10);
@@ -22,20 +25,35 @@ fn main(){
 
     loop{
         let events = kengine.run();
-        match *events.get_keys(){
-            Some(Keys::Left) => {
-                kengine.get_ksprite("snake").add_direction(Kdirection::LEFT);
+
+        match *events.get_keventtype(){
+            Some(KeventType::COLLISION) => {
+                match collide_with_window(kengine.get_ksprite("snake").get_kcoord(), 1200 as f64, 750 as f64){
+                    WindowBorders::LEFT => kengine.get_ksprite("snake").set_kcoord_x(1200.),
+                    WindowBorders::RIGHT => kengine.get_ksprite("snake").set_kcoord_x(0.),
+                    WindowBorders::UP => kengine.get_ksprite("snake").set_kcoord_y(750.),
+                    WindowBorders::DOWN => kengine.get_ksprite("snake").set_kcoord_y(0.),
+                    WindowBorders::CENTER => {}
+                }
             },
-            Some(Keys::Right) => {
-                kengine.get_ksprite("snake").add_direction(Kdirection::RIGHT);
+            Some(KeventType::KEYPRESSED) => {
+                match *events.get_keys(){
+                    Some(Keys::Left) => {
+                        kengine.get_ksprite("snake").add_direction(Kdirection::LEFT);
+                    },
+                    Some(Keys::Right) => {
+                        kengine.get_ksprite("snake").add_direction(Kdirection::RIGHT);
+                    },
+                    Some(Keys::Up) => {
+                        kengine.get_ksprite("snake").add_direction(Kdirection::UP);
+                    },
+                    Some(Keys::Down) => {
+                        kengine.get_ksprite("snake").add_direction(Kdirection::DOWN);
+                    },
+                    Some(Keys::Escape) => {break;},
+                    _ => {}
+                }
             },
-            Some(Keys::Up) => {
-                kengine.get_ksprite("snake").add_direction(Kdirection::UP);
-            },
-            Some(Keys::Down) => {
-                kengine.get_ksprite("snake").add_direction(Kdirection::DOWN);
-            },
-            Some(Keys::Escape) => {break;},
             _ => {}
         }
     }
