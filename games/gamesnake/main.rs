@@ -39,16 +39,24 @@ fn main(){
             Some(KeventType::KEYPRESSED) => {
                 match *events.get_keys(){
                     Some(Keys::Left) => {
-                        kengine.get_ksprite("snake").add_direction(Kdirection::LEFT);
+                        if kengine.get_ksprite("snake").get_kdirection() != Kdirection::RIGHT{
+                            kengine.get_ksprite("snake").add_direction(Kdirection::LEFT);
+                        }
                     },
                     Some(Keys::Right) => {
-                        kengine.get_ksprite("snake").add_direction(Kdirection::RIGHT);
+                        if kengine.get_ksprite("snake").get_kdirection() != Kdirection::LEFT{
+                            kengine.get_ksprite("snake").add_direction(Kdirection::RIGHT);
+                        }
                     },
                     Some(Keys::Up) => {
-                        kengine.get_ksprite("snake").add_direction(Kdirection::UP);
+                        if kengine.get_ksprite("snake").get_kdirection() != Kdirection::DOWN{
+                            kengine.get_ksprite("snake").add_direction(Kdirection::UP);
+                        }
                     },
                     Some(Keys::Down) => {
-                        kengine.get_ksprite("snake").add_direction(Kdirection::DOWN);
+                        if kengine.get_ksprite("snake").get_kdirection() != Kdirection::UP{
+                            kengine.get_ksprite("snake").add_direction(Kdirection::DOWN);
+                        }
                     },
                     Some(Keys::Escape) => {break;},
                     _ => {}

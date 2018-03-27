@@ -27,8 +27,8 @@ impl Ksprite{
         self.d = Some(d);
     }
 
-    pub fn get_kdirection(&self) -> &Option<Kdirection>{
-        return &self.d;
+    pub fn get_kdirection(&self) -> Kdirection{
+        return self.d.clone().unwrap();
     }
 
     pub fn set_kcoord_x(&mut self, x : f64){

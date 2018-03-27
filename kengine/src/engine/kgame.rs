@@ -33,7 +33,7 @@ impl Kgame{
     }
 
     pub fn update(&mut self, _args: &UpdateArgs, w: f64, h: f64) -> Kevents{
-        let mut m : Option<Kevents> = None;
+        let mut m : Option<Kevents> = Some(Kevents::new(None, None));
         for (_i, o) in self.a.get_kassets(){
             o.move_ksprite();
             match collide_with_window(o.get_kcoord(), w, h){

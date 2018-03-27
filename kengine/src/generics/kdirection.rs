@@ -1,4 +1,4 @@
-#[derive(PartialEq)]
+#[derive(PartialEq, Eq, Copy, Clone)]
 pub enum Kdirection {
    RIGHT,
    LEFT,

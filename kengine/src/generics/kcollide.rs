@@ -9,10 +9,10 @@ pub enum WindowBorders{
 }
 
 pub fn collide_with_window(a: &Kcoord, w: f64, h: f64) -> WindowBorders{
-    if a.x <= 0. {return WindowBorders::LEFT;}
-    if a.x >= w {return WindowBorders::RIGHT;}
-    if a.y <= 0. {return WindowBorders::UP;}
-    if a.y >= h {return WindowBorders::DOWN;}
+    if a.x < 0. {return WindowBorders::LEFT;}
+    if a.x > w {return WindowBorders::RIGHT;}
+    if a.y < 0. {return WindowBorders::UP;}
+    if a.y > h {return WindowBorders::DOWN;}
     return WindowBorders::CENTER;
 }
 
